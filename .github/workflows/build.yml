@@ -20,8 +20,8 @@ jobs:
                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: src\Dapplo.Confluence.sln                         
-      Test_Project_Path: src\Dapplo.Confluence.Tests\Dapplo.Confluence.Tests.csproj
+      solution_path: src/Dapplo.Confluence.sln                         
+      test_path: src/Dapplo.Confluence.Tests/Dapplo.Confluence.Tests.csproj
       
     steps:
     - name: Checkout
@@ -35,10 +35,14 @@ jobs:
         dotnet-version: ${{ matrix.dotnetVersion }}
 
     - name: Restore Packages
-      run: dotnet restore
+      run: dotnet restore $env:solution_path
+      
+    - name: Build
+      run: dotnet build $env:solution_path --configuration $env:configuration
+      env:
+        configuration: ${{ matrix.configuration }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     #- name: Restore the application
-    #  run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-    #  env:
-    #    Configuration: ${{ matrix.configuration }}
+    #  run: msbuild $env:solution_path /t:Restore /p:Configuration=$env:Configuration
+    #  
