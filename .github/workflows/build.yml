@@ -49,4 +49,4 @@ jobs:
         CONFIGURATION: ${{ matrix.configuration }}
 
     - name: Publish
-      run: dotnet nuget push $BUILD_PATH/*.nupkg --skip-duplicate --no-symbols true --api-key ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push $BUILD_PATH/*.nupkg --source "${{ env.NUGET_REPO }}" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate --no-symbols true 
