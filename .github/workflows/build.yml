@@ -34,7 +34,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnetVersion }}
-        source-url: ${{ NUGET_REPO }}
+        source-url: ${{ env.NUGET_REPO }}
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
