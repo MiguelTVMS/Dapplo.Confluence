@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnetVersion }}
-        source-url: https://nuget.pkg.github.com/MiguelTVMS/index.json
+        source-url: https://nuget.pkg.github.com/migueltvms/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
