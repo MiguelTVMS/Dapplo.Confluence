@@ -21,8 +21,9 @@ jobs:
 
     env:
       SOLUTION_PATH: src/Dapplo.Confluence.sln
-      BUILD_PATH: src/Dapplo.Confluence/bin/Release                 
-      
+      BUILD_PATH: src/Dapplo.Confluence/bin/Release
+      NUGET_NAMESPACE: migueltvms
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -33,7 +34,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnetVersion }}
-        source-url: https://nuget.pkg.github.com/migueltvms/index.json
+        source-url: https://nuget.pkg.github.com/${{NUGET_NAMESPACE}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
@@ -48,4 +49,4 @@ jobs:
         CONFIGURATION: ${{ matrix.configuration }}
 
     - name: Publish
-      run: dotnet nuget push $BUILD_PATH/*.nupkg --skip-duplicate --no-symbols true
+      run: dotnet nuget push $BUILD_PATH/*.nupkg --skip-duplicate --no-symbols true --api-key ${{ secrets.GITHUB_TOKEN }}
