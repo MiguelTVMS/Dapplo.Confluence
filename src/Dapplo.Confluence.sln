@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapplo.Confluence", "Dapplo.Confluence\Dapplo.Confluence.csproj", "{9E5111D5-7572-4643-937E-80D59B62B9F7}"
 EndProject
@@ -11,22 +11,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapplo.Confluence.Tests", "
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CI|Any CPU = CI|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E5111D5-7572-4643-937E-80D59B62B9F7}.CI|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5111D5-7572-4643-937E-80D59B62B9F7}.CI|Any CPU.Build.0 = Release|Any CPU
 		{9E5111D5-7572-4643-937E-80D59B62B9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E5111D5-7572-4643-937E-80D59B62B9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5111D5-7572-4643-937E-80D59B62B9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E5111D5-7572-4643-937E-80D59B62B9F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02980BD0-F615-498C-8478-7E033394005F}.CI|Any CPU.ActiveCfg = Release|Any CPU
 		{02980BD0-F615-498C-8478-7E033394005F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02980BD0-F615-498C-8478-7E033394005F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02980BD0-F615-498C-8478-7E033394005F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02980BD0-F615-498C-8478-7E033394005F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.CI|Any CPU.ActiveCfg = Release|Any CPU
+		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2119C12B-5874-4E60-BD36-45CA1D29FDDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

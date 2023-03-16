@@ -1,4 +1,4 @@
-name: Build
+name: Build Dapplo.Confluence
 
 on:
   push:
@@ -13,15 +13,15 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Release]
+        configuration: [CI]
         dotnetVersion: [6.0.x]
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
+    runs-on: ubuntu-latest  # For a list of available runner types, refer to
                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
       SOLUTION_PATH: src/Dapplo.Confluence.sln
-      TEST_PATH: src/Dapplo.Confluence.Tests/Dapplo.Confluence.Tests.csproj                      
+      BUILD_PATH: src/Dapplo.Confluence/bin/Release                 
       
     steps:
     - name: Checkout
@@ -33,14 +33,25 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnetVersion }}
+        source-url: https://nuget.pkg.github.com/MiguelTVMS/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Restore Packages
-      run: dotnet restore $env:SOLUTION_PATH
+    #- name: Restore Packages
+    #  run: dotnet restore $SOLUTION_PATH --os linux
       
     - name: Build
-      run: dotnet build $env:SOLUTION_PATH --configuration $env:CONFIGURATION
+      run: dotnet build $SOLUTION_PATH --configuration $CONFIGURATION
       env:
         CONFIGURATION: ${{ matrix.configuration }}
+
+    - name: Pack
+      run: dotnet pack $SOLUTION_PATH --configuration $CONFIGURATION
+      env:
+        CONFIGURATION: ${{ matrix.configuration }}
+
+    - name: Publish
+      run: dotnet nuget push BUILD_PATH/*.nupkg --skip-duplicate --no-symbols true
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     #- name: Restore the application
