@@ -16,7 +16,7 @@ jobs:
         configuration: [Release]
         dotnetVersion: [6.0.x]
 
-    runs-on: ubuntu-latest  # For a list of available runner types, refer to
+    runs-on: windows-latest  # For a list of available runner types, refer to
                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
@@ -35,10 +35,10 @@ jobs:
         dotnet-version: ${{ matrix.dotnetVersion }}
 
     - name: Restore Packages
-      run: dotnet restore $SOLUTION_PATH
+      run: dotnet restore $env:SOLUTION_PATH
       
     - name: Build
-      run: dotnet build $SOLUTION_PATH --configuration $CONFIGURATION
+      run: dotnet build $env:SOLUTION_PATH --configuration $env:CONFIGURATION
       env:
         CONFIGURATION: ${{ matrix.configuration }}
 
