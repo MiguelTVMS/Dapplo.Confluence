@@ -36,9 +36,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/MiguelTVMS/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    #- name: Restore Packages
-    #  run: dotnet restore $SOLUTION_PATH --os linux
       
     - name: Build
       run: dotnet build $SOLUTION_PATH --configuration $CONFIGURATION
@@ -52,8 +49,3 @@ jobs:
 
     - name: Publish
       run: dotnet nuget push BUILD_PATH/*.nupkg --skip-duplicate --no-symbols true
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    #- name: Restore the application
-    #  run: msbuild $env:solution_path /t:Restore /p:Configuration=$env:Configuration
-    #  
