@@ -22,7 +22,6 @@ jobs:
     env:
       SOLUTION_PATH: src/Dapplo.Confluence.sln
       BUILD_PATH: src/Dapplo.Confluence/bin/Release
-      NUGET_REPO: https://nuget.pkg.github.com/migueltvms/index.json
 
     steps:
     - name: Checkout
