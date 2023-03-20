@@ -35,7 +35,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnetVersion }}
         source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_PAT }}
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Build
       run: dotnet build $SOLUTION_PATH --configuration $CONFIGURATION
@@ -51,4 +51,4 @@ jobs:
 #      run: dotnet nuget add source --username ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
 
     - name: Publish
-      run: dotnet nuget push $BUILD_PATH/*.nupkg
+      run: dotnet nuget push $BUILD_PATH/*.nupkg --api-key ${{ secrets.NUGET_PAT }}
