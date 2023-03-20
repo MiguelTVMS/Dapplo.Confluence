@@ -46,7 +46,7 @@ jobs:
         CONFIGURATION: ${{ matrix.configuration }}
 
     - name: Prepare Package Source
-      run: dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.NUGET_REPO }}
+      run: dotnet nuget add source --username ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
 
     - name: Publish
-      run: dotnet nuget push $BUILD_PATH/*.nupkg --source "github"
+      run: dotnet nuget push $BUILD_PATH/*.nupkg --source "github" --api-key ${{ secrets.GITHUB_TOKEN }}
