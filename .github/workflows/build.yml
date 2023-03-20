@@ -34,9 +34,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnetVersion }}
-        source-url: ${{ env.NUGET_REPO }}
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
     - name: Build
       run: dotnet build $SOLUTION_PATH --configuration $CONFIGURATION
@@ -48,5 +45,8 @@ jobs:
       env:
         CONFIGURATION: ${{ matrix.configuration }}
 
+    - name: Prepare Package Source
+      run: dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.NUGET_REPO }}
+
     - name: Publish
-      run: dotnet nuget push $BUILD_PATH/*.nupkg
+      run: dotnet nuget push $BUILD_PATH/*.nupkg --source "github"
